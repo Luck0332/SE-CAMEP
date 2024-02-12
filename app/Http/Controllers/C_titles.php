@@ -15,6 +15,9 @@ class C_titles extends Controller
     {
         //
 
+        session(['key' => 'value']);
+
+
         $data['titles'] = M_titles::all();
 
         return view('titles.index', $data);
@@ -36,6 +39,7 @@ class C_titles extends Controller
         //
         $tit_name = $request->input('tit_name');
         $tit_is_active = $request->input('tit_is_active');
+        $tit_image = $request->input('tit_image');
         if($tit_is_active == "on"){
             $tit_is_active = 1;
         }else{
@@ -44,6 +48,7 @@ class C_titles extends Controller
         $m_titles = new M_titles();
         $m_titles->tit_name = $tit_name;
         $m_titles->tit_is_active = $tit_is_active;
+        $m_titles->tit_image = $tit_image;
         $m_titles->save();
         // use Illuminate\Support\Facades\Redirect;
         return Redirect::to('/titles');

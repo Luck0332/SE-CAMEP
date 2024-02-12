@@ -9,12 +9,20 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-..."
   crossorigin="anonymous">
+
+    <!-- SweetAlert2 -->
+    <script src="{{ url('assets/plugins/sweetalert2/sweetalert2.all.js') }}"></script>
+    {{-- <link rel="stylesheet" href="{{ url('assets/plugins/sweetalert2/sweetalert2.min.css') }}"> --}}
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
+
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -183,7 +191,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Thanakorn Phetchnork</a>
+                        <a href="#" class="d-block"><b>{{ Auth::user()->name }}</b></a>
                     </div>
                     <br>
 
@@ -265,6 +273,44 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
+            @yield('js')
+                <script>
+                    function deleteme(id) {
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                            $.ajax({
+                                method: "POST",
+                                url: "/titles/" + id,
+                                data: {
+                                _token: "{{ csrf_token() }}",
+                                _method: "DELETE"
+                                }
+                            })
+                                .done(function() {
+                                Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                                });
+                            });
+                            }
+                        });
+                    }
+
+
+                </script>
+
+
+
+
 
             <div id="confirmationPopup" style="display: none;" class="popup">
                 <p> <b>คุณแน่ใจหรือไม่ที่ต้องการออกจากระบบ ?</b></p>
@@ -340,7 +386,14 @@
                 }
             </style>
 
+
+
+
             @yield('content')
+
+
+
+
 
 
         </div>
@@ -377,6 +430,13 @@
     <script src="{{ url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('assets/dist/js/adminlte.min.js') }}"></script>
+    <!-- SweetAlert2 -->
+    <script src="{{ url('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    @yield('js')
+
+
+
 </body>
 
 </html>

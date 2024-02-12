@@ -43,7 +43,12 @@ Route::resource('/my-controller4', MyController::class);
 
 
 Route::get('/', function () {
-    return view('welcome'); // welcome.blade.php
+    return view('welcome');
+});
+
+
+Route::get('/jQuery',function(){
+    return view('jQuery');
 });
 
 // use Illuminate\Http\Request;
