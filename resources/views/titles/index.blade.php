@@ -58,15 +58,14 @@
                                             ${val.tit_is_active}
                                         </td>
                                         <td>
-                                            <a href="{{ url('/titles/') }}/${val.tit_id}"
-                                                class="btn btn-warning">แก้ไข</a>
-                                            <button type="button" class="btn btn-danger"
-                                                onclick="deleteme(${val.tit_id})">ลบ</button>
+                                            <a href="{{ url('/titles/') }}/${val.tit_id}" class="btn btn-warning">แก้ไข</a>
+                                            <button type="button" class="btn btn-danger" onclick="deleteme(${val.tit_id})">ลบ</button>
                                         </td>
                                     </tr>`;
                         })
                         $('#my_tbody').html(value_my_tbody)
                     })
+                   
             }, 2000);
 
 
@@ -81,8 +80,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">SE CAMP : {{ session('key') }} : {{ Auth::user()->id }}</h1>
-                    <button class="btn btn-primary" onclick="deleteme()">Test</button>
+                    <h1 class="m-0">SE CAMP </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
