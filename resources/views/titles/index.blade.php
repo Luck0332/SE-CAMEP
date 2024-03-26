@@ -58,14 +58,21 @@
                                             ${val.tit_is_active}
                                         </td>
                                         <td>
-                                            <a href="{{ url('/titles/') }}/${val.tit_id}" class="btn btn-warning">แก้ไข</a>
-                                            <button type="button" class="btn btn-danger" onclick="deleteme(${val.tit_id})">ลบ</button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{{ url('/titles/') }}/${val.tit_id}">แก้ไข</a>
+                                                    <button type="button" class="dropdown-item" onclick="deleteme(${val.tit_id})">ลบ</button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>`;
                         })
                         $('#my_tbody').html(value_my_tbody)
                     })
-                   
+
             }, 2000);
 
 
